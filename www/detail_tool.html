@@ -1,0 +1,167 @@
+<!--総合評価ポップアップ-->
+<ons-popover direction="up" var="popover" cancelable>
+	<div style="padding: 10px; text-align: center;">
+		<p>
+			<input type="number" id="rate" ng-model="rate">
+			<div class="star-rating">
+				<div id="star-rating-front">★★★★★</div>
+				<div class="star-rating-back">★★★★★</div>
+			</div>
+		</p>
+	</div>
+</ons-popover>
+
+<!-- レビュー投稿 -->
+<ons-modal var="myModal" direction="up" ng-controller="ReviewController as rv" class="modal-content">
+
+	<ons-card style="color:black">
+		<div>Reviews</div>
+		<div style="text-align: center; margin-top: 30px">
+			<p>
+				<div class="hyouka">
+					<input id="hoshi1" type="radio" name="hoshi" value="5" />
+					<label for="hoshi1">★</label>
+					<input id="hoshi2" type="radio" name="hoshi" value="4" />
+					<label for="hoshi2">★</label>
+					<input id="hoshi3" type="radio" name="hoshi" value="3" />
+					<label for="hoshi3">★</label>
+					<input id="hoshi4" type="radio" name="hoshi" value="2" />
+					<label for="hoshi4">★</label>
+					<input id="hoshi5" type="radio" name="hoshi" value="1" />
+					<label for="hoshi5">★</label>
+				</div>
+			</p>
+			<p>
+				<ons-input id="comment" modifier="underbar" placeholder="コメント" float ng-model="page.comment"></ons-input>
+			</p>
+			<ons-button tappable ng-click="myModal.hide()">Cancel</ons-button>
+			<ons-button tappable ng-click="saveReview();showToast()">Submit</ons-button>
+		</div>
+		<dl class="accordion">
+			<dt style="clear:left;text-align:right">
+				<ons-button tappable ng-click="flag = !flag">open</ons-button>
+			</dt>
+
+			<dd ng-class="{hide: !flag}">
+				<!--非表示ここから-->
+				<table class="hiddenbox">
+					<tr>
+						<td rowspan="2">営業時間</td>
+						<!-- これチェックで開始時間と終了時間のinputをdisabledにしたい -->
+						<td>
+							<ons-checkbox input-id="24h" ng-click="toggleSE()" checked="true">休みないよ</ons-checkbox>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							開始時間<input type="time" class="text-input" ng-model="rv.inputStartTime" id="inputSTime" ng-disabled="disabled"/>
+						</td>
+						<td>
+							終了時間<input type="time" class="text-input" ng-model="rv.inputEndTime" id="inputETime" ng-disabled="disabled"/>
+						</td>
+					</tr>
+					<tr>
+						<td>休業日</td>
+						<td colspan="2">
+							<table>
+								<tr>
+									<td>
+										<ons-checkbox input-id="check-DotW" ng-model="rv.Monday"></ons-checkbox> 月</td>
+									<td>
+										<ons-checkbox input-id="check-DotW" ng-model="rv.Tuesday"></ons-checkbox> 火</td>
+									<td>
+										<ons-checkbox input-id="check-DotW" ng-model="rv.Wednesday"></ons-checkbox> 水</td>
+									<td>
+										<ons-checkbox input-id="check-DotW" ng-model="rv.Thursday"></ons-checkbox> 木</td>
+									<td>
+										<ons-checkbox input-id="check-DotW" ng-model="rv.Friday"></ons-checkbox> 金</td>
+									<td>
+										<ons-checkbox input-id="check-DotW" ng-model="rv.Saturday"></ons-checkbox> 土</td>
+									<td>
+										<ons-checkbox input-id="check-DotW" ng-model="rv.Sunday"></ons-checkbox> 日</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+					<tr>
+						<td>
+							<ons-checkbox input-id="check-youshiki" ng-model="rv.youshiki"></ons-checkbox> 洋式</td>
+						<td>
+							<ons-checkbox input-id="check-washiki" ng-model="rv.washiki"></ons-checkbox> 和式</td>
+						<td>
+							<ons-checkbox input-id="check-washlet" ng-model="rv.washlet"></ons-checkbox> ウォシュレット</td>
+					</tr>
+				</table>
+				<!--ここまで-->
+			</dd>
+		</dl>
+	</ons-card>
+</ons-modal>
+
+<!-- submitした時にjsのshowToast()から呼び出されるtoast-->
+<!-- レビュー取り消し等も要るかも -->
+<!-- toastはiPhoneだとfabbuttonがズレてくれなくて重なってしまう 要改善 -->
+<ons-toast var="toast" style="position:fixed">
+	投稿しました<button ng-click="toast.hide()">HIDE</button>
+</ons-toast>
+
+<ons-toast var="toast2" style="position:fixed">
+	トイレ情報を変更しました<button ng-click="toast.hide()">HIDE</button>
+</ons-toast>

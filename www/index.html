@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+
+	<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet" />
+	<link rel="stylesheet" href="components/loader.css">
+	<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+	<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style2.css">
+	<link rel="stylesheet" href="css/rate-style.css">
+	<link rel="stylesheet" href="css/mover-style.css">
+	<link rel="stylesheet" href="css/test.css">
+
+	<script src="components/loader.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/onsenui/js/onsenui.min.js"></script>
+	<script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+	<script src="js/underscore-min.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVy1My4f64VyFUBXlgtzw1Wp1-T9eSj4E"></script>
+	<script src="https://82mou.github.io/infobox/lib/infobox.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+	<script src="js/ageruna.js"></script>
+
+</head>
+
+<body ng-app="my-app">
+
+	<ng-include src="'detail_tool.html'"></ng-include>
+	<ng-include src="'create_tool.html'"></ng-include>
+	<ng-include src="'shrink.html'"></ng-include>
+	<ng-include src="'setting.html'"></ng-include>
+
+	<ons-navigator var="navi" page="splitter.html"></ons-navigator>
+	<ons-template id="splitter.html">
+		<ons-page>
+			<ons-splitter ng-controller="AppController as app" var="splitter">
+				<ons-splitter-side side="left" width="220px" collapse swipeable swipe-target-width="30px">
+					<ons-page>
+						<ons-list>
+							<ons-list-item ng-click="app.load('home.html')" tappable class="nico">
+								トイレはどこ？
+							</ons-list-item>
+							<ons-list-item ng-click="app.load('settings.html')" tappable class="nico">
+								ログイン
+							</ons-list-item>
+							<ons-list-item ng-click="app.load('set.html')" tappable class="nico">
+								せってい
+							</ons-list-item>
+						</ons-list>
+					</ons-page>
+				</ons-splitter-side>
+				<ons-splitter-content page="home.html"></ons-splitter-content>
+			</ons-splitter>
+		</ons-page>
+	</ons-template>
+
+	<ons-template id="home.html">
+		<ons-page>
+			<ons-toolbar>
+				<div class="left">
+					<ons-toolbar-button ng-click="splitter.left.open()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button>
+				</div>
+				<div class="center nico">
+					といれろぐ
+				</div>
+				<div class="TBright right">
+					<!-- 検索ボタン -->
+					<ons-toolbar-button>
+						<ons-icon icon="fa-search" size="18px"></ons-icon>
+					</ons-toolbar-button>
+					<!-- 音姫ボタン -->
+					<ons-toolbar-button>
+						<ons-icon icon="fa-music" onclick="playSound()" size="18px" id="audio_position"></ons-icon>
+					</ons-toolbar-button>
+					<!-- 絞り込みボタン -->
+					<ons-toolbar-button>
+						<ons-icon icon="fa-filter" ng-click="sModal.show()" size="18px"></ons-icon>
+					</ons-toolbar-button>
+					<!-- トイレ追加ボタン -->
+					<ons-toolbar-button>
+						<ons-icon icon="fa-plus" onclick="addM()" size="18px"></ons-icon>
+					</ons-toolbar-button>
+				</div>
+			</ons-toolbar>
+			<!--画面に初手から地図を表示-->
+			<div id="map_canvas" style="width:100%; height:100%"></div>
+		</ons-page>
+	</ons-template>
+
+	<ons-template id="settings.html">
+		<ons-page>
+			<ons-toolbar>
+				<div class="left">
+					<ons-toolbar-button ng-click="splitter.left.open()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button>
+				</div>
+				<div class="center nico">
+					ログイン
+				</div>
+			</ons-toolbar>
+			<!-- 表示 -->
+		</ons-page>
+	</ons-template>
+
+
+	<ons-template id="set.html">
+		<ons-page>
+			<ons-toolbar>
+				<div class="left">
+					<ons-toolbar-button ng-click="splitter.left.open()">
+						<ons-icon icon="md-menu"></ons-icon>
+					</ons-toolbar-button>
+				</div>
+				<div class="center nico">
+					せってい
+				</div>
+			</ons-toolbar>
+			<ons-list>
+				<ons-list ng-controller="DialogController">
+					<ons-list-header class="center">
+						音姫設定
+					</ons-list-header>
+					<ons-list-item  ng-click="show('musicList.html')" modifier="tappable">
+						曲選択
+					</ons-list-item>
+					<ons-list-item ng-click="show('material.html')" modifier="tappable">
+						音量調整
+					</ons-list-item>
+					<ons-list-header class="center">
+						なにかのせってい
+					</ons-list-header>
+					<ons-list-item modifier="tappable">
+						なにかのせってい
+					</ons-list-item>
+				</ons-list>
+			</ons-list>
+		</ons-page>
+	</ons-template>
+
+	<!-- 音姫起動 -->
+	<!-- audioだとiosは上手く動かない可能性があるのでmediaに変更する https://docs.monaca.io/ja/sampleapp/tips/media/-->
+	<audio id="sound-file">
+		<source src="media/otoware.mp3" type="audio/mp3">
+	</audio>
+
+
+	<script src="js/app.js"></script>
+	<script src="js/marker.js"></script>
+	<script src="js/detail.js"></script>
+	<script src="js/create.js"></script>
+	<script src="js/shrink.js"></script>
+	<script src="js/MUSIC.js"></script>
+	<script src="js/set.js"></script>
+</body>
+
+</html>

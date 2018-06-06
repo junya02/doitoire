@@ -1,0 +1,40 @@
+<!-- 設定画面で呼び出すhtml -->
+
+<ons-template id="material.html">
+  <ons-dialog var="dialog" modifier="material" cancelable>
+    <div style="padding: 0 22px 22px 22px">
+      <p style="font-weight: 500;">Volumes</p>
+
+      <p style="opacity: 0.6; font-size: 80%;">Media volume</p>
+      <div>
+        <input type="range" class="range range--material" style="float: right; width: 190px; margin-top: -4px;" id="volume" value="50" min="0" max="100" onChange="volumeChange()">
+        <i class="zmdi zmdi-volume-up" style="font-size: 24px; opacity: 0.6"></i>
+      </div>
+    </div>
+  </ons-dialog>
+</ons-template>
+
+<ons-template id="musicList.html">
+  <ons-dialog var="dialog" cancelable>
+
+    <ons-list>
+      <ons-list-item tappable>
+      <label class="left">
+        <ons-radio name="color" input-id="radio-1" checked></ons-radio>
+      </label>
+      <label for="radio-1" class="center">
+        Red
+      </label>
+    </ons-list-item>
+    <ons-list-item tappable>
+      <label class="left">
+        <ons-radio name="color" input-id="radio-2"></ons-radio>
+      </label>
+      <label for="radio-2" class="center">
+        Blue
+      </label>
+    </ons-list-item>
+    </ons-list>
+
+  </ons-dialog>
+</ons-template>

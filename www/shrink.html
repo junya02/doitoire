@@ -1,0 +1,63 @@
+<!-- 絞込み -->
+<ons-modal var="sModal" direction="up" class="smodal" ng-controller="ShrinkController as sc">
+
+	<ons-card style="color:black">
+		<div>
+			<h3>絞込み検索</h3>
+		</div>
+		<div style="margin-top: 30px; margin-bottom: 30px;">
+			<form name="shrinkForm">
+				<ons-list>
+					<label for="check-0">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-0" class="cbox" name="cancelS" ng-click="toggleShrink()" checked></ons-checkbox>　絞り込まない</ons-list-item>
+        </label>
+					<!-- shrink1の場合 -->
+					<!-- <label for="check-1">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-1" class="cbox" name="shrink" value="洋式"></ons-checkbox>　洋式</ons-list-item>
+        </label>
+					<label for="check-2">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-2" class="cbox" name="shrink" value="和式"></ons-checkbox>　和式</ons-list-item>
+        </label>
+					<label for="check-3">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-3" class="cbox" name="shrink" value="ウォシュレット"></ons-checkbox>　ウォシュレット</ons-list-item>
+        </label> -->
+					<!-- shrink2の場合 -->
+					<label for="check-1">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-1" class="cbox" name="shrink" value="you" ng-disabled="disabled"></ons-checkbox>　洋式</ons-list-item>
+        </label>
+					<label for="check-2">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-2" class="cbox" name="shrink" value="wa" ng-disabled="disabled"></ons-checkbox>　和式</ons-list-item>
+        </label>
+					<label for="check-3">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-3" class="cbox" name="shrink" value="washlet" ng-disabled="disabled"></ons-checkbox>　ウォシュレット</ons-list-item>
+        </label>
+					<label for="check-4">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-4" class="cbox" name="shrink" value="改札の中" ng-disabled="disabled"></ons-checkbox>　改札の中</ons-list-item>
+        </label>
+					<label for="check-5">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-5" class="cbox" name="shrink" value="多目的トイレ" ng-disabled="disabled"></ons-checkbox>　多目的トイレ</ons-list-item>
+        </label>
+					<label for="check-6">
+          <ons-list-item tappable>
+          <ons-checkbox input-id="check-6" class="cbox" name="shrink" value="オストメイト" ng-disabled="disabled"></ons-checkbox>　オストメイト</ons-list-item>
+        </label>
+				</ons-list>
+			</form>
+		</div>
+
+		<p style="text-align:center">
+			<ons-button tappable ng-click="sModal.hide()">キャンセル</ons-button>
+			<ons-button tappable style="width:105px" onclick="shrink()" ng-click="sModal.hide()">検索</ons-button>
+		</p>
+
+	</ons-card>
+</ons-modal>

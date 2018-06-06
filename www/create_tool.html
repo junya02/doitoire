@@ -1,0 +1,9 @@
+<ons-dialog var="createDialog" cancelable ng-controller="CreateController as cc">
+	<div>
+		<ons-list-header>写真の投稿</ons-list-header>
+		<ons-list>
+			<ons-list-item ng-click="selectImage(0);createDialog.hide()" modifier="longdivider" tappable>カメラで撮影</ons-list-item>
+			<ons-list-item ng-click="selectImage(1);createDialog.hide()" modifier="longdivider" tappable>写真から選択</ons-list-item>
+		</ons-list>
+  </div>
+</ons-dialog>
